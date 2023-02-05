@@ -263,11 +263,12 @@
                                     :compile "cmake --build build --config Debug --target all -j 14 --"
                                     :test "ctest -j14 -C Debug -T test --output-on-failure")
 
-  ;; set projectile-known-projects after magit
-  ;; (after! magit
-  ;;   (update-projectile-known-projects))
-  )
+  ;; (setq projectile-project-search-path '("~/Documents/projects/" ("~/Github" . 1)))
 
+  ;; set projectile-known-projects after magit
+  (after! magit
+    (update-projectile-known-projects))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; COMPLETION

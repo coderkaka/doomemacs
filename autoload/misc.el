@@ -129,7 +129,7 @@ If prefix ARG is set, prompt for a directory to search from."
 ;;               :caller 'counsel-file-jump)))
 
 ;;;###autoload
-(defvar +my/repo-root-list '("~" "~/Dropbox" "~/go/src" "~/.cache" "~/.config")
+(defvar +my/repo-root-list '("~" "~/Documents" "~/.config")
   "personal repo root to scan git projects")
 
 ;;;###autoload
@@ -139,9 +139,9 @@ If prefix ARG is set, prompt for a directory to search from."
 (defun update-projectile-known-projects ()
   (interactive)
   (require 'magit)
-  (setq magit-repository-directories '(("~/dev-local" . 2)))
+  (setq magit-repository-directories '(("~/Github" . 2)))
   ;; Workplace folder has some permission error on macos
-  (let ((workspace-dir "~/dev/"))
+  (let ((workspace-dir "~/Documents/projects/"))
     (when (file-directory-p workspace-dir)
       (dolist (dir (directory-files workspace-dir t))
         (when (and

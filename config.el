@@ -4,17 +4,17 @@
 ;; sync' after modifying this file!
 
 (load! "+os")
-;; (load! "+git")
-;; (load! "+misc")
-;; (load! "+text")
-;; (load! "+prog")
- (load! "+ui")
-;; (load! "+keys")
+(load! "+misc")
+(load! "+text")
+(load! "+prog")
+(load! "+ui")
+(load! "+keys")
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Zhang Qiong"
       user-mail-address "zhangqiongxingzhe@email.com")
+  ;;
 
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode
       confirm-kill-emacs nil)

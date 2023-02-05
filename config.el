@@ -3,26 +3,61 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+(load! "+os")
+;; (load! "+git")
+;; (load! "+misc")
+;; (load! "+text")
+;; (load! "+prog")
+ (load! "+ui")
+;; (load! "+keys")
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Zhang Qiong"
+      user-mail-address "zhangqiongxingzhe@email.com")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom:
-;;
-;; - `doom-font' -- the primary font to use
-;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
-;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
-;;   presentations or streaming.
-;; - `doom-unicode-font' -- for unicode glyphs
-;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
-;;
-;; See 'C-h v doom-font' for documentation and more examples of what they
-;; accept. For example:
-;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+(setq doom-scratch-buffer-major-mode 'emacs-lisp-mode
+      confirm-kill-emacs nil)
+
+(setq-default fill-column 120
+              delete-trailing-lines t)
+
+;; Delete the selection when pasting
+(delete-selection-mode 1)
+
+;; disable risky local variables warning
+(advice-add 'risky-local-variable-p :override #'ignore)
+
+(set-popup-rules! '(("^\\*helpful" :size 0.35)
+                    ("^\\*Ibuffer\\*$" :size 0.35)
+                    ("^\\*info.*" :size 80 :side right)
+                    ("^\\*Man.*" :size 80 :side right)
+                    ("^\\*keycast.*" :size 50 :side right)
+                    ("^\\*Customize" :actions display-buffer)
+                    ("^\\*edit-indirect" :size 0.6)
+                    ("^\\*YASnippet Tables\\*$" :size 0.35)
+                    ("^\\*grep\\*$" :size 0.35)
+                    ("^\\*pytest\\*" :size 0.35)
+                    ("^\\*Anaconda\\*$" :size 0.35)
+                    ("\\*.*server log\\*$" :side top :size 0.20 :select nil)
+                    ((lambda (buf _) (with-current-buffer buf (eq major-mode 'forge-topic-mode))) :size 0.35)
+                    ))
+
+;; Manually edit .local/custom.el will break doom updates
+(when (file-directory-p custom-file)
+  (message (concat "Please delete " custom-file ". And customization in config.el and +ui.el.")))
+
+(custom-set-variables
+ '(warning-suppress-log-types '((lsp-mode) (iedit)))
+ '(warning-suppress-types '((iedit))))
+
+;; Load system profile for different machines and work config
+(dolist (config '("~/.doom.d/local.el"
+                  "~/Code/slb/dots/local.el"))
+  (let ((config-file (file-truename config)))
+    (when (file-exists-p config-file)
+      (load-file config-file))))
+
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -32,7 +67,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one-light)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -41,6 +76,7 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/org/")
+
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an

@@ -48,3 +48,46 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+
+;;disabled packages
+(disable-packages! solaire-mode
+                   osx-trash
+                   realgud
+                   realgud-trepan-ni
+                   ccls
+                   tide
+                   swiper
+                   forge
+                   code-review
+                   company-anaconda
+                   lsp-python-ms
+                   pyimport)
+
+;;text
+(package! youdao-dictionary)
+(package! link-hint)
+(package! symbol-overlay)
+(package! pomm :recipe (:host github :repo "SqrtMinusOne/pomm.el"))
+;;(package! org-appear)
+
+;; misc
+(package! format-all)
+(package! keycast)
+(package! evil-string-inflection)
+(package! all-the-icons-ibuffer)
+(package! dired-narrow)
+(package! atomic-chrome)
+(package! git-link)
+(package! magit-delta)
+(package! citre)
+(package! imenu-list)
+(package! tmux-pane)
+(when (not (modulep! :tools lsp +eglot))
+  (package! lsp-docker))
+(package! rime :recipe (:host github :repo "DogLooksGood/emacs-rime" :files ("*.el" "Makefile" "lib.c")))
+(package! go-translate)
+;; https://github.com/tecosaur/screenshot/issues/11
+(package! screenshot :recipe (:host github :repo "tecosaur/screenshot"))
+
+;; programming
+(package! protobuf-mode)

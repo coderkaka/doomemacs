@@ -18,15 +18,16 @@
 (when (display-graphic-p)
   (setq user-font
         (cond
-         ((find-font (font-spec :name "Mocano")) "Mocano")
+         ((find-font (font-spec :name "Monaco")) "Monaco")
          ((find-font (font-spec :name "OperatorMono Nerd Font")) "OperatorMono Nerd Font")
          ((find-font (font-spec :name "Droid Sans Mono")) "Droid Sans Mono")
-         ((find-font (font-spec :name "Droid Sans Fallback")) "Droid Sans Fallback")))
+         ((find-font (font-spec :name "Droid Sans Fallback")) "Droid Sans Fallback")
+         ));
 
   ;; calculate the font size based on display-pixel-height
-  (setq doom-font (font-spec :family user-font :size 15)
+  (setq doom-font (font-spec :family user-font :size 16)
         doom-big-font (font-spec :family user-font :size 18)
-        doom-variable-pitch-font (font-spec :family user-font :size 15)
+        doom-variable-pitch-font (font-spec :family user-font :size 16)
         doom-modeline-height 16)
   (setq doom-font-increment 1)
 )

@@ -88,6 +88,7 @@
 (package! go-translate)
 ;; https://github.com/tecosaur/screenshot/issues/11
 (package! screenshot :recipe (:host github :repo "tecosaur/screenshot"))
+(package! affe)
 
 ;; programming
 (package! protobuf-mode)

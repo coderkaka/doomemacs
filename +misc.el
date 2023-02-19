@@ -10,6 +10,23 @@
        ((executable-find "/opt/google/chrome/chrome") "/opt/google/chrome/chrome")
        ((executable-find "google-chrome") "google-chrome")))
 
+;; Set locate to mdfind
+(setq-default locate-command "mdfind")
+(setq consult-locate-args "mdfind")
+
+;; Set fuzzy find file
+(map! :leader
+      :desc "FuZzily find File in home"
+      "f z f" (cmd!! #'affe-find "~/"))
+(map! :leader
+      :desc "FuZzily find file in this Dir"
+      "f z d" (cmd!! #'affe-find))
+
+;; (define-emms-simple-player afplay '(file)
+;;   (regexp-opt '(".mp3" ".m4a" ".aac" ".mp4"))
+;;   "afplay")
+(setq emms-player-list '(,emms-player-afplay))
+
 ;; Set personal ispell dictionary file
 (when (file-exists-p (expand-file-name "~/.aspell.en.pws"))
   (setq ispell-personal-dictionary (expand-file-name "~/.aspell.en.pws")))
